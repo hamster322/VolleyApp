@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="5dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/owner"
+        android:textSize="30dp"
+        android:layout_marginLeft="10dp"
+        tools:text="Aboba"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/place"
+        android:layout_below="@+id/owner"
+        android:textSize="27dp"
+        android:layout_marginLeft="10dp"
+        tools:text="place"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/time"
+        android:layout_below="@+id/place"
+        android:textSize="22dp"
+        android:layout_marginLeft="10dp"
+        tools:text="22 may"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/time"
+        android:background="#595959"
+        android:layout_marginTop="2dp"
+        />
+
+</RelativeLayout>

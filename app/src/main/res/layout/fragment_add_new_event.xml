@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Ui.fragments.AddNewEventFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Новое событие:"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        android:textSize="25dp"
+        />
+
+    <Button
+        android:id="@+id/changeDateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Выбрать дату"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="40dp"
+        />
+    <Button
+        android:id="@+id/changeTimeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Выбрать время"
+        app:layout_constraintLeft_toRightOf="@+id/changeDateButton"
+        app:layout_constraintTop_toTopOf="@+id/changeDateButton"
+        app:layout_constraintBottom_toBottomOf="@+id/changeDateButton"
+        android:layout_marginLeft="35dp"
+        />
+    <TextView
+        android:id="@+id/timeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/changeDateButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="100dp"
+        android:text="Время: "
+        android:textSize="25dp"
+        />
+    <TextView
+        android:id="@+id/placeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Место: "
+        android:textSize="25dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/changeDateButton"
+        android:layout_marginTop="200dp"
+        />
+    <EditText
+        android:id="@+id/placeEditText"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/placeText"
+        app:layout_constraintTop_toTopOf="@+id/placeText"
+        app:layout_constraintBottom_toBottomOf="@+id/placeText"
+        />
+    <Button
+        android:id="@+id/PostButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Опубликовать"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="50dp"
+        />
+    <TextView
+        android:id="@+id/ErrorMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/PostButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="35dp"
+        tools:text="Ошибка"
+        android:textSize="25dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

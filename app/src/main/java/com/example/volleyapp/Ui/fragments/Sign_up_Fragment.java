@@ -1,10 +1,9 @@
-package com.example.volleyapp;
+package com.example.volleyapp.Ui.fragments;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +11,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.volleyapp.logic.MainActivity;
 import com.example.volleyapp.databinding.FragmentSignUpBinding;
+import com.example.volleyapp.logic.Entities.User;
 
-import java.util.List;
-import java.util.concurrent.ExecutorService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Sign_up_Fragment extends Fragment {
     private Button Button_Sign_up, Go_to_Sign_in_button;
@@ -23,6 +25,8 @@ public class Sign_up_Fragment extends Fragment {
     private TextView ErrorMsg;
 
     private FragmentSignUpBinding binding;
+
+    private MainActivity mainActivity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,11 +42,13 @@ public class Sign_up_Fragment extends Fragment {
 
         ErrorMsg =binding.ErrorOutput;
 
+        mainActivity = ((MainActivity)getActivity());
+
         Go_to_Sign_in_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Sign_in_Fragment signInFragment = new Sign_in_Fragment();
-                ((MainActivity)getActivity()).PlaceFragment(signInFragment);
+                mainActivity.PlaceFragment(signInFragment);
             }
         });
 
@@ -63,22 +69,44 @@ public class Sign_up_Fragment extends Fragment {
 
         return view;
     }
+    @Override
+    public void onDestroyView() {
+        binding=null;
+        super.onDestroyView();
+    }
 
     public void SignUpByLogPas(String login, String password){
-        ((MainActivity)getActivity()).executorService.execute(() -> {
-            List<User> Users = ((MainActivity)getActivity()).UserDB.getUserDao().getUserByLog(login);
-            ((MainActivity)getActivity()).mainThreadHendler.post(() -> {
-                if (Users.isEmpty()){
+        mainActivity.retrofitInterface.GetUserByLogin(login).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.body().getLogin()==""){
                     User newUser = new User(login,password);
-                    ((MainActivity)getActivity()).addUserInBackground(newUser);
-//                    ((MainActivity)getActivity()).setCurrentUser(newUser);
-                    MainFragment mainFragment = new MainFragment();
-                    ((MainActivity)getActivity()).PlaceFragment(mainFragment);
+                    mainActivity.retrofitInterface.postUser(newUser).enqueue(new Callback<User>() {
+                        @Override
+                        public void onResponse(Call<User> call, Response<User> response) {
+                            mainActivity.setCurrentUser(response.body());
+                            MainFragment mainFragment = new MainFragment();
+                            mainActivity.PlaceFragment(mainFragment);
+                        }
+
+                        @Override
+                        public void onFailure(Call<User> call, Throwable t) {
+                            ErrorMsg.setText("Произошла ошибка "+t.getMessage());
+                        }
+                    });
+
                 }
                 else{
-                    ErrorMsg.setText("Пользователь с таким логином уже существует!");
+                    ErrorMsg.setText("Пользователя с таким логином уже существует");
+
                 }
-            });
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                ErrorMsg.setText("Произошла ошибка "+t.getMessage());
+            }
         });
+
     }
 }

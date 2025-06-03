@@ -5,7 +5,7 @@
     android:id="@+id/main_sign_in"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Sign_in_Fragment">
+    tools:context=".Ui.fragments.Sign_in_Fragment">
 
     <TextView
         android:layout_width="wrap_content"
@@ -97,14 +97,14 @@
         app:layout_constraintRight_toRightOf="parent"
         android:textSize="15dp"
         />
-    <Button
-        android:id="@+id/Del_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/Error_output"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:text="Удалить"
-        />
+<!--    <Button-->
+<!--        android:id="@+id/Del_button"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/Error_output"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        android:text="Удалить"-->
+<!--        />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
