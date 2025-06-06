@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
         ft.replace(R.id.main,fragment);
         ft.addToBackStack(null);
         ft.commit();
-//        Toast.makeText(getApplicationContext(),"Тест нового фрагмента",Toast.LENGTH_LONG).show();
     }
 
     public void setCurrentUser(User user){
